@@ -2,21 +2,17 @@ import { useState, useEffect, useCallback } from "react";
 
 import classes from "./Comments.module.css";
 import NewCommentForm from "./NewCommentForm";
-import { useParams } from "react-router-dom";
 import useHttp from "../../hooks/use-http";
 import { getAllComments } from "../../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import CommentsList from "./CommentsList";
-import { useRouteMatch } from "react-router-dom";
 
 const Comments = (props) => {
   const [isAddingComment, setIsAddingComment] = useState(false);
-  const params = useParams();
   const {
     sendRequest,
     status,
     data: loadedComments,
-    error,
   } = useHttp(getAllComments);
   const { quoteId } = props;
 
@@ -41,6 +37,8 @@ const Comments = (props) => {
       </div>
     );
   }
+
+  console.log(loadedComments)
 
   if (status === "completed" && loadedComments && loadedComments.length > 0) {
     comments = <CommentsList comments={loadedComments} />;

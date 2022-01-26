@@ -30,6 +30,7 @@ const NewCommentForm = (props) => {
   }, [status, error, onAddedComment]);
 
   return (
+    
     <form className={classes.form} onSubmit={submitFormHandler}>
       {status === "pending" && (
         <div className="centered">
