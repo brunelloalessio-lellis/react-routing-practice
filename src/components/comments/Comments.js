@@ -21,8 +21,8 @@ const Comments = (props) => {
   };
 
   const addedCommentHandler = useCallback(() => {
-
-  },[]);
+    sendRequest(quoteId)
+  },[sendRequest,quoteId]);
 
   useEffect(() => {
     sendRequest(quoteId);
@@ -37,8 +37,6 @@ const Comments = (props) => {
       </div>
     );
   }
-
-  console.log(loadedComments)
 
   if (status === "completed" && loadedComments && loadedComments.length > 0) {
     comments = <CommentsList comments={loadedComments} />;
